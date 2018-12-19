@@ -102,3 +102,11 @@ func SetNumeric(use bool) Option {
 		ch.numeric = use
 	}
 }
+
+// SetSymbols sets whether use symbols or not
+func SetSymbols(use bool) Option {
+	return func(ich Chance) {
+		ch := ich.(*chance)
+		ch.symbols = use
+	}
+}

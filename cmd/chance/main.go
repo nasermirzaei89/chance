@@ -10,5 +10,5 @@ import (
 func main() {
 	ch := chance.New(chance.SetSeed(time.Now().UnixNano()))
 	fmt.Println(ch.Bool(chance.SetLikelihood(10)))
-	fmt.Println(ch.Character(chance.SetUseLowerCase(), chance.SetNumeric(true)))
+	fmt.Println(ch.Character(chance.SetAlpha(true), chance.SetUseLowerCase(), chance.SetNumeric(true)))
 }
