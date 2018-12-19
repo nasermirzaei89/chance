@@ -5,7 +5,7 @@ func (ch *chance) Bool(options ...func(Chance)) bool {
 	ch2 := &chp
 
 	for i := range options {
-		options[i](ch)
+		options[i](ch2)
 	}
 
 	if ch2.likelihood <= 0 {
@@ -34,8 +34,8 @@ func SetLikelihood(likelihood int64) Option {
 	}
 }
 
-// DefaultLikelihood resets likelihood for bool
-func DefaultLikelihood() Option {
+// ResetLikelihood resets likelihood for bool
+func ResetLikelihood() Option {
 	return func(ich Chance) {
 		ch := ich.(*chance)
 		ch.likelihood = 50
