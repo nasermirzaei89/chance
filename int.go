@@ -1,21 +1,26 @@
 package chance
 
+import "math"
+
 // IntOption is a type
 type IntOption func(*IntOptions)
 
+// IntOptions is int options
 type IntOptions struct {
+	intMin int
+	intMax int
 }
 
 func (ch *chance) Int(options ...IntOption) int {
-	ops := IntOptions{}
+	ops := IntOptions{-math.MaxInt32, math.MaxInt32}
 
 	for i := range options {
 		options[i](&ops)
 	}
 
-	ch2.r.Seed(ch2.seed)
+	ch.r.Seed(ch.seed)
 	// TODO: handle error on bad options
-	return ch2.r.Intn(ops.intMax-ops.intMin) + ops.intMin
+	return ch.r.Intn(ops.intMax-ops.intMin) + ops.intMin
 }
 
 // Int returns a random int
@@ -24,29 +29,15 @@ func Int(options ...IntOption) int {
 }
 
 // SetIntMin sets min of random int
-func SetIntMin(min int) Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.intMin = min
+func SetIntMin(min int) IntOption {
+	return func(iOpts *IntOptions) {
+		iOpts.intMin = min
 	}
 }
 
 // SetIntMax sets max of random int
-func SetIntMax(max int) Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.intMax = max
+func SetIntMax(max int) IntOption {
+	return func(iOpts *IntOptions) {
+		iOpts.intMax = max
 	}
-}
-
-// ResetIntMax resets max of random int
-func ResetIntMax() Option {
-	//TODO: set max int64 for 64bit systems
-	return SetIntMax(math.MaxInt32)
-}
-
-// ResetIntMin resets min of random int
-func ResetIntMin() Option {
-	//TODO: set max int64 for 64bit systems
-	return SetIntMin(math.MaxInt32 * -1)
 }

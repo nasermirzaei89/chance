@@ -1,10 +1,9 @@
 package chance
 
-import "fmt"
-
 // StringOption is a type
 type StringOption func(*StringOptions)
 
+// StringOptions is string options
 type StringOptions struct {
 	stringLength int
 	stringPool   string
@@ -17,11 +16,11 @@ func (ch *chance) String(options ...StringOption) string {
 		options[i](&ops)
 	}
 
-	ch.R.Seed(ch.Seed)
+	ch.r.Seed(ch.seed)
 
 	str := ""
 	for i := 0; i < ops.stringLength; i++ {
-		str += string(ops.stringPool[ch.R.Intn(len(ops.stringPool))])
+		str += string(ops.stringPool[ch.r.Intn(len(ops.stringPool))])
 	}
 
 	return str
@@ -36,7 +35,6 @@ func String(options ...StringOption) string {
 func SetStringLength(length int) StringOption {
 	return func(sch *StringOptions) {
 		sch.stringLength = length
-		fmt.Println(length)
 	}
 }
 
@@ -46,4 +44,3 @@ func SetStringPool(pool string) StringOption {
 		sch.stringPool = pool
 	}
 }
-

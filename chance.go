@@ -13,7 +13,6 @@ type Chance interface {
 type chance struct {
 	r    *rand.Rand
 	seed int64
-
 }
 
 // Option is a type
@@ -52,6 +51,6 @@ func SetSeed(seed int64) Option {
 func ResetSeed() Option {
 	return func(ich Chance) {
 		ch := ich.(*chance)
-		ch.Seed = 1
+		ch.seed = 1
 	}
 }

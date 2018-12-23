@@ -9,7 +9,7 @@ import (
 
 func main() {
 	ch := chance.New(chance.SetSeed(time.Now().UnixNano()))
-	fmt.Println(ch.Bool() )
-	fmt.Println(ch.String())
-	fmt.Println(ch.Int(chance.SetIntMax(-5), chance.SetIntMin(5)))
+	fmt.Println(ch.Bool())
+	fmt.Println(ch.String(chance.SetStringLength(10)))
+	fmt.Println(ch.Int(chance.SetIntMax(100), chance.SetIntMin(90)))
 }

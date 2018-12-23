@@ -3,6 +3,7 @@ package chance
 // BoolOption is a type
 type BoolOption func(*BoolOptions)
 
+// BoolOptions is bool options
 type BoolOptions struct {
 }
 
@@ -13,9 +14,9 @@ func (ch *chance) Bool(options ...BoolOption) bool {
 		options[i](&ops)
 	}
 
-	ch.R.Seed(ch.Seed)
+	ch.r.Seed(ch.seed)
 
-	return ch.R.Intn(2) == 1
+	return ch.r.Intn(2) == 1
 }
 
 // Bool returns a random boolean
