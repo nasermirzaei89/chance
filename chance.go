@@ -7,6 +7,7 @@ import "math/rand"
 type Chance interface {
 	Bool(options ...func(Chance)) bool
 	String(options ...func(Chance)) string
+	Int(options ...func(Chance)) int
 }
 
 type chance struct {

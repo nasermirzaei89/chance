@@ -11,4 +11,5 @@ func main() {
 	ch := chance.New(chance.SetSeed(time.Now().UnixNano()))
 	fmt.Println(ch.Bool())
 	fmt.Println(ch.String())
+	fmt.Println(ch.Int())
 }
