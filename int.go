@@ -1,22 +1,25 @@
 package chance
 
-import "math"
+// IntOption is a type
+type IntOption func(*IntOptions)
 
-func (ch *chance) Int(options ...func(Chance)) int {
-	chp := *ch
-	ch2 := &chp
+type IntOptions struct {
+}
+
+func (ch *chance) Int(options ...IntOption) int {
+	ops := IntOptions{}
 
 	for i := range options {
-		options[i](ch2)
+		options[i](&ops)
 	}
 
 	ch2.r.Seed(ch2.seed)
 	// TODO: handle error on bad options
-	return ch2.r.Intn(ch2.intMax-ch2.intMin) + ch2.intMin
+	return ch2.r.Intn(ops.intMax-ops.intMin) + ops.intMin
 }
 
 // Int returns a random int
-func Int(options ...func(Chance)) int {
+func Int(options ...IntOption) int {
 	return defaultChance.Int(options...)
 }
 
