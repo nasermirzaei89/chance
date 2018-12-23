@@ -5,19 +5,15 @@ import "math/rand"
 
 // Chance is interface of chance
 type Chance interface {
-	Bool(options ...func(Chance)) bool
-	String(options ...func(Chance)) string
-	Int(options ...func(Chance)) int
+	Bool(options ...BoolOption) bool
+	String(options ...StringOption) string
+	Int(options ...IntOption) int
 }
 
 type chance struct {
 	r    *rand.Rand
 	seed int64
 
-	stringLength int
-	stringPool   string
-	intMin       int
-	intMax       int
 }
 
 // Option is a type
@@ -37,10 +33,6 @@ func New(options ...Option) Chance {
 	// defaults
 	ResetSeed()(ch)
 	ch.r = rand.New(rand.NewSource(ch.seed))
-	ResetStringLength()(ch)
-	ResetStringPool()(ch)
-	ResetIntMax()(ch)
-	ResetIntMin()(ch)
 
 	for i := range options {
 		options[i](ch)
@@ -58,5 +50,8 @@ func SetSeed(seed int64) Option {
 
 // ResetSeed resets seed option of instance
 func ResetSeed() Option {
-	return SetSeed(1)
+	return func(ich Chance) {
+		ch := ich.(*chance)
+		ch.Seed = 1
+	}
 }
