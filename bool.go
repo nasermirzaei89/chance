@@ -13,7 +13,7 @@ func (ch *chance) Bool(options ...func(Chance)) bool {
 	return ch2.r.Intn(2) == 1
 }
 
-// Bool returns a random boolean
+// Bool returns a random boolean value
 func Bool(options ...func(Chance)) bool {
 	return defaultChance.Bool(options...)
 }

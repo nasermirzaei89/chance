@@ -1,3 +1,4 @@
+// Package chance is a random generator in Go
 package chance
 
 import "math/rand"
@@ -26,6 +27,7 @@ func init() {
 }
 
 // New returns new instance of chance
+//  chance.New(chance.SetSeed(time.Now().UnixNano()))
 func New(options ...Option) Chance {
 	ch := new(chance)
 
