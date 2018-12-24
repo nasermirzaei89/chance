@@ -10,7 +10,7 @@ build-cmd:
 	go build -o ./cmd/chance/chance ./cmd/chance
 
 format:
-	which goimports || go get -u -v golang.org/x/tools/cmd/goimports
+	which goimports || go get -u golang.org/x/tools/cmd/goimports
 	find $(PWD) -type f -name "*.go" | xargs -n 1 -I R goimports -w R
 	find $(PWD) -type f -name "*.go" | xargs -n 1 -I R gofmt -s -w R
 
