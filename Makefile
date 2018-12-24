@@ -27,4 +27,4 @@ lint:
 	find $(PWD) -type f -name "*.go" | xargs -n 1 -I {} misspell {} # fixme
 
 test:
-	go test ./...
+	go test -race -coverprofile=coverage.txt -covermode=atomic
