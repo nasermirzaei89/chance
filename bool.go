@@ -1,19 +1,25 @@
 package chance
 
-func (ch *chance) Bool(options ...func(Chance)) bool {
-	chp := *ch
-	ch2 := &chp
+// BoolOption is a type
+type BoolOption func(*BoolOptions)
 
-	for i := range options {
-		options[i](ch2)
-	}
-
-	ch2.r.Seed(ch2.seed)
-
-	return ch2.r.Intn(2) == 1
+// BoolOptions is bool options
+type BoolOptions struct {
 }
 
-// Bool returns a random boolean value
-func Bool(options ...func(Chance)) bool {
+func (ch *chance) Bool(options ...BoolOption) bool {
+	ops := BoolOptions{}
+
+	for i := range options {
+		options[i](&ops)
+	}
+
+	ch.r.Seed(ch.seed)
+
+	return ch.r.Intn(2) == 1
+}
+
+// Bool returns a random boolean
+func Bool(options ...BoolOption) bool {
 	return defaultChance.Bool(options...)
 }

@@ -1,51 +1,46 @@
 package chance
 
-func (ch *chance) String(options ...func(Chance)) string {
-	chp := *ch
-	ch2 := &chp
+// StringOption is a type
+type StringOption func(*StringOptions)
+
+// StringOptions is string options
+type StringOptions struct {
+	stringLength int
+	stringPool   string
+}
+
+func (ch *chance) String(options ...StringOption) string {
+	ops := StringOptions{5, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]"}
 
 	for i := range options {
-		options[i](ch2)
+		options[i](&ops)
 	}
 
-	ch2.r.Seed(ch2.seed)
+	ch.r.Seed(ch.seed)
 
 	str := ""
-
-	for i := 0; i < ch2.stringLength; i++ {
-		str += string(ch2.stringPool[ch2.r.Intn(len(ch2.stringPool))])
+	for i := 0; i < ops.stringLength; i++ {
+		str += string(ops.stringPool[ch.r.Intn(len(ops.stringPool))])
 	}
 
 	return str
 }
 
 // String returns a random string
-func String(options ...func(Chance)) string {
+func String(options ...StringOption) string {
 	return defaultChance.String(options...)
 }
 
 // SetStringLength sets length of random string
-func SetStringLength(length int) Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.stringLength = length
+func SetStringLength(length int) StringOption {
+	return func(sch *StringOptions) {
+		sch.stringLength = length
 	}
-}
-
-// ResetStringLength resets length of random string
-func ResetStringLength() Option {
-	return SetStringLength(5)
 }
 
 // SetStringPool sets pool of random string
-func SetStringPool(pool string) Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.stringPool = pool
+func SetStringPool(pool string) StringOption {
+	return func(sch *StringOptions) {
+		sch.stringPool = pool
 	}
-}
-
-// ResetStringPool resets pool of random string
-func ResetStringPool() Option {
-	return SetStringPool("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]")
 }
