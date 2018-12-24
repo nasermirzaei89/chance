@@ -16,6 +16,8 @@ type chance struct {
 
 	stringLength int
 	stringPool   string
+	intMin       int
+	intMax       int
 }
 
 // Option is a type
@@ -37,6 +39,8 @@ func New(options ...Option) Chance {
 	ch.r = rand.New(rand.NewSource(ch.seed))
 	ResetStringLength()(ch)
 	ResetStringPool()(ch)
+	ResetIntMax()(ch)
+	ResetIntMin()(ch)
 
 	for i := range options {
 		options[i](ch)
