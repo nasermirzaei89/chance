@@ -53,8 +53,5 @@ func SetSeed(seed int64) Option {
 
 // ResetSeed resets seed option of instance
 func ResetSeed() Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.seed = 1
-	}
+	return SetSeed(1)
 }

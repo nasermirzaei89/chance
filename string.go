@@ -34,10 +34,7 @@ func SetStringLength(length int) Option {
 
 // ResetStringLength resets length of random string
 func ResetStringLength() Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.stringLength = 5
-	}
+	return SetStringLength(5)
 }
 
 // SetStringPool sets pool of random string
@@ -50,8 +47,5 @@ func SetStringPool(pool string) Option {
 
 // ResetStringPool resets pool of random string
 func ResetStringPool() Option {
-	return func(ich Chance) {
-		ch := ich.(*chance)
-		ch.stringPool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]"
-	}
+	return SetStringPool("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]")
 }
