@@ -7,6 +7,7 @@ import "math/rand"
 type Chance interface {
 	Bool(options ...func(Chance)) bool
 	String(options ...func(Chance)) string
+	Int(options ...func(Chance)) int
 }
 
 type chance struct {
@@ -15,6 +16,8 @@ type chance struct {
 
 	stringLength int
 	stringPool   string
+	intMin       int
+	intMax       int
 }
 
 // Option is a type
@@ -36,6 +39,8 @@ func New(options ...Option) Chance {
 	ch.r = rand.New(rand.NewSource(ch.seed))
 	ResetStringLength()(ch)
 	ResetStringPool()(ch)
+	ResetIntMax()(ch)
+	ResetIntMin()(ch)
 
 	for i := range options {
 		options[i](ch)
