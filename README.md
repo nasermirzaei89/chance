@@ -1,5 +1,8 @@
 # Chance
 
+[![Build Status](https://travis-ci.org/nasermirzaei89/chance.svg?branch=master)](https://travis-ci.org/nasermirzaei89/chance)
+[![GitHub license](https://img.shields.io/github/license/nasermirzaei89/chance.svg)](https://github.com/nasermirzaei89/chance/blob/master/LICENSE)
+
 ## Instal
 
 ```sh
