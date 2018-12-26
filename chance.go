@@ -8,6 +8,10 @@ type Chance interface {
 	Bool(options ...BoolOption) bool
 	String(options ...StringOption) string
 	Int(options ...IntOption) int
+	Int8(options ...Int8Option) int8
+	Int16(options ...Int16Option) int16
+	Int32(options ...Int32Option) int32
+	Int64(options ...Int64Option) int64
 }
 
 type chance struct {
