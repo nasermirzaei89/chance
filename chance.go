@@ -13,6 +13,7 @@ type Chance interface {
 	Int32(options ...Int32Option) int32
 	Int64(options ...Int64Option) int64
 	UInt(options ...UIntOption) uint
+	UInt8(options ...UInt8Option) uint8
 }
 
 type chance struct {
