@@ -15,6 +15,7 @@ type Chance interface {
 	UInt(options ...UIntOption) uint
 	UInt8(options ...UInt8Option) uint8
 	UInt16(options ...UInt16Option) uint16
+	Byte(options ...ByteOption) byte
 }
 
 type chance struct {

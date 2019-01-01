@@ -5,7 +5,7 @@ import "math"
 // UInt8Option is a type
 type UInt8Option func(*UInt8Options)
 
-// UInt8Options is int8 options
+// UInt8Options is uint8 options
 type UInt8Options struct {
 	min uint8
 	max uint8
@@ -28,14 +28,14 @@ func UInt8(options ...UInt8Option) uint8 {
 	return defaultChance.UInt8(options...)
 }
 
-// SetUInt8Min sets min of random int8
+// SetUInt8Min sets min of random uint8
 func SetUInt8Min(min uint8) UInt8Option {
 	return func(iOpts *UInt8Options) {
 		iOpts.min = min
 	}
 }
 
-// SetUInt8Max sets max of random int8
+// SetUInt8Max sets max of random uint8
 func SetUInt8Max(max uint8) UInt8Option {
 	return func(iOpts *UInt8Options) {
 		iOpts.max = max
