@@ -14,17 +14,17 @@ func ExampleUInt() {
 // Returns a random uint with max of 10
 func ExampleUInt_setMax() {
 	fmt.Print(chance.UInt(chance.SetUIntMax(10)))
-	// Output: 3
+	// Output: 1
 }
 
 // Returns a random uint with min of 10
 func ExampleUInt_setMin() {
 	fmt.Print(chance.UInt(chance.SetUIntMin(10)))
-	// Output: 15352856648520921639
+	// Output: 9828766684487745576
 }
 
 // Returns a random uint in range 1 to 10
 func ExampleUInt_setRange() {
 	fmt.Print(chance.UInt(chance.SetUIntMin(1), chance.SetUIntMax(10)))
-	// Output: 2
+	// Output: 9
 }
