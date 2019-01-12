@@ -19,6 +19,7 @@ type Chance interface {
 	Byte(options ...ByteOption) byte
 	Rune(options ...RuneOption) rune
 	UInt64(options ...UInt64Option) uint64
+	Float32(options ...Float32Option) float32
 }
 
 type chance struct {
