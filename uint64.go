@@ -14,7 +14,7 @@ type UInt64Options struct {
 }
 
 func (ch *chance) UInt64(options ...UInt64Option) uint64 {
-	ops := UInt64Options{min: 0 , max: math.MaxUint64 / 2} // FIXME: Use full range
+	ops := UInt64Options{min: 0, max: math.MaxUint64 / 2} // FIXME: Use full range
 
 	for i := range options {
 		options[i](&ops)
